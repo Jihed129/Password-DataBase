@@ -25,20 +25,30 @@ class Pass:
 
 
 
-path = 'C:/Users/jihed/Documents/vs code/python/OOP and DS/pwd_manager.json' # <<-- Path Here -->>
+path = 'YOUR JSON PATH HERE' # <<-- Path Here -->>
 
-while True:
+while True:    
+    # get website
+    website = input("what website are these credentials for ? ")
+    if "." not in website:
+        print("enter a valid website")
+        website = input("what website are these credentials for ? ")
+    # get username
+    username = input("your username? ")
+    # get email
     email = input("your email? ")
     if email.find("@") == -1 or email.find(".") == -1:
         print("enter a valid email")
         email = input("your email? ")
     else:
+        # get password
         pwd = input("your password? ")
         if len(pwd) < 8:
             print("more than 8 characters! ")
             pwd = input("your password? ")
         else:
             break
+
     
 
 
@@ -69,7 +79,7 @@ else:
 
 # save your informations 
 def save_data():
-    newinfos = {'email': email, 'password': informations.get_password()}
+    newinfos = {'website': website, 'username': username,'email': email, 'password': informations.get_password()}
     if informations.get_salt():
         newinfos['salt'] = informations.get_salt()
     data['manager'].append(newinfos)
